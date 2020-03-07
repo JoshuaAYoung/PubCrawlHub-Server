@@ -1,6 +1,5 @@
 
-
-CREATE TABLE Pubs
+CREATE TABLE pubs
 (
   id int4 PRIMARY KEY,
   pub_name TEXT NOT NULL,
@@ -12,14 +11,14 @@ CREATE TABLE Pubs
   longitude float8 NOT NULL,
   latitude float8 NOT NULL,
   pub_url TEXT
-)
+);
 
-CREATE TABLE Crawls
+CREATE TABLE crawls
 (
   id serial PRIMARY KEY,
   crawl_name TEXT NOT NULL,
-  date_time TIMESTAMP NOT NULL,
-)
+  date_time TIMESTAMP NOT NULL
+);
 
 CREATE TABLE pubs_crawls
 (
@@ -28,7 +27,7 @@ CREATE TABLE pubs_crawls
   visit_order int2 NOT NULL,
   duration int2 NOT NULL,
   PRIMARY KEY(pub_id, crawl_id)
-)
+);
 
-ALTER TABLE pubs_crawls ADD CONSTRAINT pubs_crawls_fk0 FOREIGN KEY (crawl_id) REFERENCES Crawls(id);
-ALTER TABLE pubs_crawls ADD CONSTRAINT pubs_crawls_fk1 FOREIGN KEY (pub_id) REFERENCES Pubs(id);
+ALTER TABLE pubs_crawls ADD CONSTRAINT pubs_crawls_fk0 FOREIGN KEY (crawl_id) REFERENCES crawls(id);
+ALTER TABLE pubs_crawls ADD CONSTRAINT pubs_crawls_fk1 FOREIGN KEY (pub_id) REFERENCES pubs(id);
